@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ministerial Examination Countdown</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body{
+        background:#f3f3f3;
+        color:#111;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+        direction: rtl;
+    }
+
+    .container{
+        width:100%;
+        max-width:700px;
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .main-title{
+        text-align:center;
+        font-size:clamp(28px, 5vw, 42px);
+        font-weight:600;
+        color:#222;
+        margin-bottom:40px;
+    }
+
+    .info-boxes{
+        display:flex;
+        gap:10px 20px;
+        flex-wrap:wrap;
+    }
+
+    .box{
+        flex:1 1 250px;
+        background:white;
+        border-radius:18px;
+        padding:22px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.08);
+        text-align:center;
+    }
+
+    .box h2{
+        font-size:24px;
+        margin-bottom:10px;
+        color:#111;
+    }
+
+    .box p{
+        font-size:18px;
+        color:#555;
+        line-height:1.5;
+    }
+
+    .timers{
+        display:flex;
+        gap:10px 20px;
+        flex-wrap:wrap;
+    }
+
+    .timer-card{
+        flex:1 1 250px;
+        background:#0078D4;
+        color:white;
+        border-radius:18px;
+        padding:28px;
+        text-align:center;
+        box-shadow:0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .timer-card h3{
+        font-size:24px;
+        margin-bottom:15px;
+        font-weight:500;
+    }
+
+    .time{
+        font-size:clamp(40px, 8vw, 64px);
+        font-weight:700;
+    }
+
+    .small{
+        margin-top:10px;
+        font-size:18px;
+        opacity:0.9;
+    }
+
+    .bb1{
+    font-size: 30px;
+    }
+
+    @media(max-width:600px){
+        .box,
+        .timer-card{
+            width:100%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="main-title">
+        ماوەی تاقیکردنەوەی وەزاری پۆلی 12
+    </div>
+
+    <div class="info-boxes">
+
+        <div class="box">
+            <h2>خولی یەکەم</h2>
+            <p>
+                دەستپێ دەکات لە: 2026/06/14<br>
+                کۆتایی دێت لە: 2026/07/08
+            </p>
+        </div>
+
+        <div class="box">
+            <h2>خولی دووەم</h2>
+            <p>
+                دەستپێ دەکات لە: 2026/08/11<br>
+                کۆتایی دێت لە: 2026/08/07
+            </p>
+        </div>
+
+    </div>
+
+    <div class="timers">
+
+        <div class="timer-card">
+            <h3>تاقیکردنەوەی خولی یەکەم</h3>
+            <div class="time" id="timer1">0d</div>
+            <div class="small"><span class="bb1">ماوە</span><br> تا 2026/06/14</div>
+        </div>
+
+        <div class="timer-card">
+            <h3>تاقیکردنەوەی خولی دووەم</h3>
+            <div class="time" id="timer2">0d</div>
+            <div class="small"><span class="bb1">ماوە</span><br> تا 2026/08/11</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const firstTermDate = new Date("2026-06-14T00:00:00");
+    const secondTermDate = new Date("2026-08-11T00:00:00");
+
+    function updateCountdown(targetDate, elementId) {
+        const now = new Date();
+
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+            document.getElementById(elementId).innerHTML = "Started";
+            return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+        document.getElementById(elementId).innerHTML = days + " ڕۆژ";
+    }
+
+    function updateAll() {
+        updateCountdown(firstTermDate, "timer1");
+        updateCountdown(secondTermDate, "timer2");
+    }
+
+    updateAll();
+
+    setInterval(updateAll, 1000);
+</script>
+
+</body>
+</html>
